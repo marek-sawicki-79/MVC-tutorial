@@ -17,9 +17,9 @@ namespace MvcMovie.Controllers
         // GET: /HelloWorld/Welcome/
         // Requires using System.Text.Encodings.Web;
 
-        public string Welcome(string name, int numTimes = 1)
+        public string Welcome(string name, int ID = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, Num Times is: {numTimes}");
+            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
 
 
