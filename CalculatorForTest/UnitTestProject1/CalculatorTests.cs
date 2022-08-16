@@ -5,14 +5,20 @@ namespace CalculatorForTest.Tests
 {
     public class CalculatorTests
     {
+        private readonly Calculator _calculator;
+
+        private CalculatorTests()
+        {
+            _calculator = new();
+        }
+
         [Theory]
         [InlineData(2, 3, 5)]
         [InlineData(4, 5, 9)]
         [InlineData(4.5, 1.5, 6)]    
-        //[InlineData(double.MaxValue, 1, double.MinValue)]
+        
         public void Add_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expectedResult)
         {
-            //arrange
             Calculator calculator = new();
             //act
             double result = calculator.Add(valueA, valueB);
@@ -24,13 +30,12 @@ namespace CalculatorForTest.Tests
         [InlineData(8, 3, 5)]
         [InlineData(14, 5, 9)]
         [InlineData(16, 7, 9)]
-        //[InlineData(double.MinValue, 1, double.MaxValue)]
+        
         public void Substract_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expected)
         {
-            //arrange
-            Calculator calculator = new();
+            
             //act
-            double result = calculator.Substract(valueA, valueB);
+            double result = _calculator.Substract(valueA, valueB);
             //assert
             Assert.Equal(expected, result);
         }
@@ -39,10 +44,8 @@ namespace CalculatorForTest.Tests
         [MemberData(nameof(Data))]
         public void Multiply_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expected)
         {
-            //arrange
-            Calculator calculator = new();
             //act
-            double result = calculator.Multiply(valueA, valueB);
+            double result = _calculator.Multiply(valueA, valueB);
             //assert
             Assert.Equal(expected, result);
         }
@@ -52,7 +55,7 @@ namespace CalculatorForTest.Tests
             {
                 new object[] { 1, 2, 2 },
                 new object[] { 10, 1.5, 15 },
-                //new object[] { double.MinValue, -1, double.MaxValue },
+                
                 new object[] { 6, 3, 18 }
             };
 
@@ -60,10 +63,8 @@ namespace CalculatorForTest.Tests
         [ClassData(typeof(CalculatorTestData))]
         public void Divide_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expected)
         {
-            //arrange
-            Calculator calculator = new();
             //act
-            double result = calculator.Divide(valueA, valueB);
+            double result = _calculator.Divide(valueA, valueB);
             //assert
             Assert.Equal(expected, result);
         }
@@ -71,8 +72,8 @@ namespace CalculatorForTest.Tests
         [Fact]
         public void Divide_WhenDividerIsZero_ThrowsArgumentExeption()
         {
-            Calculator calculator = new();
-            Assert.Throws<ArgumentException>(() => calculator.Divide(4, 0));
+            
+            Assert.Throws<ArgumentException>(() => _calculator.Divide(4, 0));
         }
 
     }
@@ -83,7 +84,7 @@ namespace CalculatorForTest.Tests
         {
             yield return new object[] { 1, 2, 0.5 };
             yield return new object[] { 10, 5, 2 };
-            //yield return new object[] { double.MinValue, -1, double.MaxValue };
+            
             yield return new object[] { 100, 10, 10};
         }
 

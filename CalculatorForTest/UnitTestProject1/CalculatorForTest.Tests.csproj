@@ -25,4 +25,10 @@
     <ProjectReference Include="..\CalculatorForTest\CalculatorForTest.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\logs.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
