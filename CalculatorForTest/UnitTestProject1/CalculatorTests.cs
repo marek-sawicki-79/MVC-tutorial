@@ -1,16 +1,17 @@
 using System.Collections;
+using FluentAssertions;
 using Xunit;
 
 namespace CalculatorForTest.Tests
 {
     public class CalculatorTests
     {
-        private readonly Calculator _calculator;
+        //private readonly Calculator _calculator;
 
-        private CalculatorTests()
-        {
-            _calculator = new();
-        }
+        //private CalculatorTests()
+        //{
+        //    _calculator = new();
+        //}
 
         [Theory]
         [InlineData(2, 3, 5)]
@@ -23,7 +24,8 @@ namespace CalculatorForTest.Tests
             //act
             double result = calculator.Add(valueA, valueB);
             //assert
-            Assert.Equal(expectedResult, result);
+            //Assert.Equal(expectedResult, result);
+            result.Should().Be(expectedResult);
         }
 
         [Theory]
@@ -33,21 +35,24 @@ namespace CalculatorForTest.Tests
         
         public void Substract_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expected)
         {
-            
+            Calculator calculator = new();
             //act
-            double result = _calculator.Substract(valueA, valueB);
+            double result = calculator.Substract(valueA, valueB);
             //assert
-            Assert.Equal(expected, result);
+            //Assert.Equal(expected, result);
+            result.Should().Be(expected);
         }
 
         [Theory]
         [MemberData(nameof(Data))]
         public void Multiply_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expected)
         {
+            Calculator calculator = new();
             //act
-            double result = _calculator.Multiply(valueA, valueB);
+            double result = calculator.Multiply(valueA, valueB);
             //assert
-            Assert.Equal(expected, result);
+            //Assert.Equal(expected, result);
+            result.Should().Be(expected);
         }
 
         public static IEnumerable<object[]> Data =>
@@ -63,17 +68,20 @@ namespace CalculatorForTest.Tests
         [ClassData(typeof(CalculatorTestData))]
         public void Divide_WithTwoNumbers_ReturnsProperValue(double valueA, double valueB, double expected)
         {
+            Calculator calculator = new();
             //act
-            double result = _calculator.Divide(valueA, valueB);
+            double result = calculator.Divide(valueA, valueB);
             //assert
-            Assert.Equal(expected, result);
+            //Assert.Equal(expected, result);
+            result.Should().Be(expected);
         }
 
         [Fact]
         public void Divide_WhenDividerIsZero_ThrowsArgumentExeption()
         {
+            Calculator calculator = new();
+            Assert.Throws<ArgumentException>(() => calculator.Divide(4, 0));
             
-            Assert.Throws<ArgumentException>(() => _calculator.Divide(4, 0));
         }
 
     }
